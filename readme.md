@@ -1,17 +1,19 @@
 # CLI Reference
 
-### listing
+## tags
+
+### listing tags
 ```sh
 git tag
 ```
 #
-### creating
+### creating tags
 Annotated:
 ```sh
 git tag -a v1.4 -m 'my message'
 ```
 # 
-### deleting
+### deleting tags
 locally:
 ```sh
 git tag -d '<tagname>'
@@ -21,7 +23,7 @@ from server:
 git push origin --delete '<tagname>'
 ```
 #
-### sharing
+### sharing tags
 share one:
 ```sh
 git push origin '<tagname>'
@@ -31,7 +33,15 @@ share multiple:
 git push origin --tags
 ```
 #
-### checkout
+### checkout tags
 ```sh
 git checkout '<tagname>'
 ```
+<br>
+
+## submodules
+### adding a submodule
+```sh
+git submodule add https://github.com/danydodson/<repository>
+```
+
