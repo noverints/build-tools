@@ -2,14 +2,6 @@
 # Env
 **/*.env
 
-.github
-.vscode
-app-builder
-nginx-proxy
-token-service
-users-service
-web-client
-
 # SSL
 **/*.pem
 **/*.crt

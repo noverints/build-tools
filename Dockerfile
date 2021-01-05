@@ -1,9 +1,8 @@
-# Build for production
 
 # Stage 1: Build react client
 FROM node:12.18-alpine as client
 WORKDIR /usr/src/app
-COPY pwa/package*.json pwa/yarn.lock ./
+COPY ../web-client/package*.json web-client/yarn.lock ./
 RUN yarn --cwd pwa --pure-lockfile --silent
 COPY pwa/ ./
 RUN yarn build
@@ -13,8 +12,8 @@ FROM openresty/openresty:alpine-fat
 
 RUN apk add --no-cache git && rm -rf /etc/nginx/* && mkdir -p /var/log/nginx
 
-COPY nginx/data/* /etc/nginx/
-COPY nginx/lua/* /usr/local/openresty/nginx/lua/
+COPY nginx-proxy/data/* /etc/nginx/
+COPY nginx-proxy/lua/* /usr/local/openresty/nginx/lua/
 COPY --from=client /usr/src/app/build /usr/local/openresty/nginx/html
 
 RUN /usr/local/openresty/luajit/bin/luarocks install lua-resty-jwt && \
