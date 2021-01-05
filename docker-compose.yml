@@ -1,0 +1,32 @@
+version: '3.8'
+services:
+
+  nginx:
+    image: danydodson/ss-nginx
+    restart: always
+    ports:
+      - '80:80'
+      - '443:443'
+    env_file:
+      - ./../nginx/.env
+    volumes:
+      - './../nginx/data:/etc/nginx'
+    networks:
+      - front-tier
+      - back-tier
+    depends_on:
+      - users
+
+  users:
+    image: danydodson/ss-users
+    restart: always
+    volumes:
+      - './../users:/usr/src/app'
+    environment:
+      NODE_ENV: production
+    networks:
+      - back-tier
+
+networks:
+  front-tier:
+  back-tier:
